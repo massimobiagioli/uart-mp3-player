@@ -1,7 +1,9 @@
+import PlayerCommands from "./PlayerCommands";
+
 const Home = () => {
     return (
       <div>
-          Home
+          <PlayerCommands/>
       </div>
     );
   };

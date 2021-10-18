@@ -1,17 +1,28 @@
 # uart-mp3-player
 
-## Commands
+## Install Rice Tool
 
-#### Build client
 <code>
-make build-client
+go get <a href="github.com/GeertJohan/go.rice">github.com/GeertJohan/go.rice</a>
+
+go get <a href="github.com/GeertJohan/go.rice/rice">github.com/GeertJohan/go.rice/rice</a>
 </code>
 
-#### Build server
-<code>
-make build-server
-</code>
+*After install Rice package, add rice binary to PATH*
 
-## Start application
 
-Launch binary: **uart-mp3-player**, then open url: http://localhost/8080
+## Configure NodeJs for client application
+
+From project root/client, launch command: <code>nvm use</code>
+
+## Start application in *development* mode
+
+From project root, launch command : <code>make start-dev</code> 
+
+## Start application in *production* mode
+
+From project root, launch command : <code>make start-prod</code>  
+
+## Open Application
+
+Open url: http://localhost/8080

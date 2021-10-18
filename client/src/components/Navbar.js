@@ -16,6 +16,12 @@ const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar>
+        <img 
+          src="/logo.png" 
+          alt="logo"
+          width="30"
+          height="30"          
+        />
         <Typography variant="h6" className={classes.title}>
           UART mp3 player
         </Typography>
