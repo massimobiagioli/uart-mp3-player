@@ -3,12 +3,15 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"uart-mp3-player/internal/handlers"
 
 	rice "github.com/GeertJohan/go.rice"
 )
 
 func main() {
+	os.Setenv("ENV", "PROD")
+
 	initRoutes()
 
 	log.Println("Server starting at port 8080...")

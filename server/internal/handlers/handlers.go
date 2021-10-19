@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"log"
 	"net/http"
 	"time"
+	"uart-mp3-player/internal/uart"
 
 	rice "github.com/GeertJohan/go.rice"
 )
@@ -21,7 +21,7 @@ func ResetHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	log.Println("*** DO RESET!")
+	uart.Reset()
 }
 
 func ServeResourceHandler(app *rice.Box, resourceName string) http.HandlerFunc {
@@ -31,7 +31,6 @@ func ServeResourceHandler(app *rice.Box, resourceName string) http.HandlerFunc {
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 			return
 		}
-
 		http.ServeContent(w, r, resourceName, time.Time{}, indexFile)
 	}
 }
