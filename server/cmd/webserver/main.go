@@ -28,6 +28,7 @@ func initRoutes() {
 	}
 
 	http.HandleFunc("/api/ping", handlers.PingHandler)
+	http.HandleFunc("/api/sd-content", handlers.SDContentHandler)
 	http.HandleFunc("/api/reset", handlers.ResetHandler)
 
 	http.Handle("/static/", http.FileServer(appBox.HTTPBox()))

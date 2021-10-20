@@ -18,19 +18,19 @@ const handleReset = async () => {
 }
 
 const PlayerCommands = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-      <div className={classes.playerCommadsContainer}>
-        <Button 
-            variant="outlined" 
-            color="error"
-            onClick={handleReset}
-        >
-            Reset
-        </Button>
-      </div>
-    );
-  };
+  return (
+    <div className={classes.playerCommadsContainer}>
+      <Button 
+          variant="outlined" 
+          color="error"
+          onClick={handleReset}
+      >
+          Reset
+      </Button>
+    </div>
+  );
+};
   
-  export default PlayerCommands;
+export default PlayerCommands;

@@ -1,11 +1,13 @@
 import PlayerCommands from "./PlayerCommands";
+import SDContent from "./SDContent";
 
 const Home = () => {
-    return (
-      <div>
-          <PlayerCommands/>
-      </div>
-    );
-  };
+  return (
+    <div>
+        <PlayerCommands/>
+        <SDContent/>
+    </div>
+  );
+};
   
-  export default Home;
+export default Home;
