@@ -4,10 +4,10 @@ import SDContent from "./SDContent";
 const Home = () => {
   return (
     <div>
-        <PlayerCommands/>
-        <SDContent/>
+      <PlayerCommands />
+      <SDContent />
     </div>
   );
 };
-  
+
 export default Home;

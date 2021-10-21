@@ -11,6 +11,11 @@ import (
 	rice "github.com/GeertJohan/go.rice"
 )
 
+type SongActionDto struct {
+	FolderId string
+	SongId   string
+}
+
 func PingHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -42,6 +47,36 @@ func ResetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	uart.Reset()
+}
+
+func PlayHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	decoder := json.NewDecoder(r.Body)
+	var dto SongActionDto
+	err := decoder.Decode(&dto)
+	if err != nil {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+	uart.Play(dto.FolderId, dto.SongId)
+}
+
+func StopHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	decoder := json.NewDecoder(r.Body)
+	var dto SongActionDto
+	err := decoder.Decode(&dto)
+	if err != nil {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+	uart.Stop(dto.FolderId, dto.SongId)
 }
 
 func ServeResourceHandler(app *rice.Box, resourceName string) http.HandlerFunc {

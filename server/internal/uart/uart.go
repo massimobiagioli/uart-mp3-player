@@ -26,6 +26,14 @@ func Reset() {
 	sendCommand(command)
 }
 
+func Play(folderId string, songId string) {
+	log.Printf("Command PLAY (FolderId: %v, SongId: %v) not implemented yet\n", folderId, songId)
+}
+
+func Stop(folderId string, songId string) {
+	log.Printf("Command STOP (FolderId: %v, SongId: %v) not implemented yet\n", folderId, songId)
+}
+
 func initSerialCommands() map[string][]byte {
 	serialCommands := make(map[string][]byte)
 	serialCommands["RESET"] = []byte{0x7E, 0xFF, 0x06, 0x0C, 0x00, 0x00, 0x00, 0xEF}

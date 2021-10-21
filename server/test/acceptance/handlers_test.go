@@ -1,6 +1,8 @@
 package handlers_test
 
 import (
+	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -60,6 +62,50 @@ func TestResetHandler(t *testing.T) {
 
 	recorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(handlers.ResetHandler)
+
+	handler.ServeHTTP(recorder, req)
+
+	if status := recorder.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+}
+
+func TestPlayHandler(t *testing.T) {
+	postBody := map[string]interface{}{
+		"folderId": "01",
+		"songId":   "01",
+	}
+	body, _ := json.Marshal(postBody)
+	req, err := http.NewRequest("POST", "/api/play", bytes.NewReader(body))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	recorder := httptest.NewRecorder()
+	handler := http.HandlerFunc(handlers.PlayHandler)
+
+	handler.ServeHTTP(recorder, req)
+
+	if status := recorder.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+}
+
+func TestStopHandler(t *testing.T) {
+	postBody := map[string]interface{}{
+		"folderId": "01",
+		"songId":   "01",
+	}
+	body, _ := json.Marshal(postBody)
+	req, err := http.NewRequest("POST", "/api/stop", bytes.NewReader(body))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	recorder := httptest.NewRecorder()
+	handler := http.HandlerFunc(handlers.StopHandler)
 
 	handler.ServeHTTP(recorder, req)
 
