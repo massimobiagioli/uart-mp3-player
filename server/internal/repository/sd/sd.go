@@ -4,18 +4,15 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
-	"path/filepath"
-	"runtime"
 	"uart-mp3-player/internal/models"
 )
-
-const JSON_DATA = "/../../../init/sd.json"
 
 func GetAll() (models.SD, error) {
 	var model models.SD
 	var err error
 
-	jsonFile, err := os.Open(getBasePath() + JSON_DATA)
+	jsonPath := os.Getenv("SD_DATA_PATH")
+	jsonFile, err := os.Open(jsonPath)
 	if err != nil {
 		return model, err
 	}
@@ -28,9 +25,4 @@ func GetAll() (models.SD, error) {
 	json.Unmarshal(byteValue, &model)
 
 	return model, nil
-}
-
-func getBasePath() string {
-	_, b, _, _ := runtime.Caller(0)
-	return filepath.Dir(b)
 }
